@@ -1,0 +1,70 @@
+{
+  "name": "modern-aws-tools",
+  "version": "0.1.0",
+  "description": "modern aws tools",
+  "main": "dist/main.js",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "require": "./dist/main.js",
+      "import": "./dist/main.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "prepare": "husky install",
+    "log": "npx conventional-changelog --config ./node_modules/@commitlint/cli -i CHANGELOG.md -s -r 0",
+    "lint": "npx lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vadxq/modern-aws-tools.git"
+  },
+  "keywords": [
+    "modern",
+    "aws",
+    "aws-tools"
+  ],
+  "author": "vadxq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vadxq/modern-aws-tools/issues"
+  },
+  "homepage": "https://github.com/vadxq/modern-aws-tools#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.2",
+    "@commitlint/config-conventional": "^18.4.2",
+    "@types/crypto-js": "^4.2.1",
+    "@types/node": "^20.9.0",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "conventional-changelog-cli": "^3.0.0",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
+    "prettier": "^2.8.8",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": "eslint --fix",
+    "*.{jsx,tsx,css,scss,less,sass}": "stylelint --fix",
+    "*": "prettier -w -u"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0"
+  }
+}
