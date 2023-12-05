@@ -15,15 +15,15 @@ export const s3Upload = async (req: S3UploadOptions) => {
     return new Promise((resolve, reject) => {
       // 生成一个随机文件名
       const finalKey = `${
-        req.prefix
-      }/${UUID().toString()}.${new Date().getTime()}.${
+        req.prefix ? req.prefix + '/' : ''
+      }${UUID().toString()}.${new Date().getTime()}.${
         req.key.split('.')[
           req.key.split('.').length > 1 ? req.key.split('.').length - 1 : 0
         ]
       }`;
 
       // 获取密钥
-      const form = s3_upload_form(req, finalKey);
+      const form = s3_upload_form(req, req.finalKey || finalKey);
 
       // 新建一个formdata 对象
       const data = new FormData();
@@ -55,7 +55,7 @@ export const s3Upload = async (req: S3UploadOptions) => {
           resolve({
             msg: e,
             host: req.host,
-            key: finalKey
+            key: req.finalKey || finalKey
           });
         })
         .catch((err) => reject(err));
