@@ -113,7 +113,7 @@ const s3_upload_form = (req: S3UploadOptions, finalKey: string) => {
       : getExactDate()
   };
 
-  form['action'] = 'https://' + req.bucket + '.s3.amazonaws.com/';
+  form['action'] = 'https://' + req.bucket + '.s3' + req.region + '.amazonaws.com/';
 
   form['key'] = finalKey;
 
